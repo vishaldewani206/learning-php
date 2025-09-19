@@ -6,5 +6,7 @@
 
 ### Starting
 create `index.html` and add boiler code
-``` bash php -S localhost:8888 
+```bash 
+php -S localhost:8888 
+```
 this will create server for your html file
