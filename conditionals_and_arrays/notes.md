@@ -1,16 +1,17 @@
 # Conditionals and Arrays
 
-### Another way to `echo`
+### `echo` shorthand
 
-`echo` is so common that it has a shorthand:
+In PHP, `echo` is commonly used to output values.
+There’s also a shorthand syntax:
 
 ```php
   <?= ... ?>
 ```
 
-## Conditionals if else
+## Conditionals: `if` / `else`
 
-if the value of read variable is true then it will run if block otherwise it will run else block
+Conditional statements let you run code depending on whether an expression is `true` or `false`.
 
 ```php
 <?php
@@ -25,9 +26,9 @@ if the value of read variable is true then it will run if block otherwise it wil
 ```
 
 ## Arrays
-
+Arrays allow you to store multiple values in a single variable.
 ### foreach
-he `foreach` loop is used to iterate over arrays. It takes each element of the array one by one and assigns it to a temporary variable.  
+The `foreach` loop iterates over each item in an array:
 ```php
 <?php
   $books = ["Do Androids Dream of Electrics Sheap", "The Langoliers", "Hail Mary"]
@@ -41,11 +42,44 @@ he `foreach` loop is used to iterate over arrays. It takes each element of the a
 </ul>
 ```
 
-In PHP, their is another way to iterate over arrays
-if you have many blocks use this syntax  
+### Alternative `foreach` Syntax
+
+Useful when mixing PHP with lots of HTML:
 
 ```php
 <?php foreach ($books as $book) :?>
   <li><?php echo $book ?></li>     
 <?php endforeach; ?>
+```
+
+### Associative Arrays
+Associative arrays use keys (like objects in JavaScript).
+```php
+<?php
+$books = [
+    [
+        "name"=> "Do Androids Dream of Electrics Sheap",
+        "author"=> "Philip k. Dick",
+        "link"=> "https://example.com",
+    ],
+    [
+        "name"=> "The Langoliers",
+        "author"=> "Andy Weir",
+        "link"=> "https://example.com",
+    ] 
+]
+?>
+```
+Displaying the array:
+```php
+
+<ul> 
+  <?php foreach ($books as $book) :?>
+      <li>
+        <a href="<?= $book['link'] ?>">
+          <?= $book['name'] ?>
+        </a>
+  </li>
+  <?php endforeach; ?>
+</ul>
 ```
