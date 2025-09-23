@@ -4,17 +4,29 @@ require "functions.php";
 
 // require("router.php");
 
-//connect to our mysql database
-$dsn = 'mysql:host=localhost;port=3306;dbname=myapp;charset=utf8mb4';
-$pdo = new PDO($dsn, "root", "admin");
+class Database {
+    public $connection;
 
-$statement = $pdo->prepare("SELECT * FROM posts");
+    public function __construct() {
+        dd('hi there');
 
-$statement->execute(); 
+        $dsn = 'mysql:host=localhost;port=3306;dbname=myapp;charset=utf8mb4';
 
-$posts = $statement->fetchAll(PDO::FETCH_ASSOC);
+        $this->connection = new PDO($dsn, "root", "admin");
+    }
+    public function query($query)  {
 
-dd($posts);
+        $statement = $this->connection->prepare($query);
+        $statement->execute(); 
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+$db = new Database();
+
+$posts = $db->query("select * from posts");
+
 
 foreach ($posts as $post) {
     echo "<li>";

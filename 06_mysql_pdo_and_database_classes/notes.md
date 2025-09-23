@@ -1,4 +1,4 @@
-# MySQL, PDO and PHP database classes
+# MySQL, PDO and PHP Database Classes
 
 ## MySQL
 first create database and connection in tablePlus.
@@ -56,4 +56,33 @@ foreach ($posts as $post) {
     echo $post['title'];
     echo "</li>";
 }
+```
+
+### PHP Database Classes
+converted database connection to classes
+`__construct()`
+- Automatically runs when the class is instantiated.
+- Creates a PDO connection to the MySQL database.
+```php
+class Database {
+    public $connection;
+
+    public function __construct() {
+        $dsn = 'mysql:host=localhost;port=3306;dbname=myapp;charset=utf8mb4';
+
+        $this->connection = new PDO($dsn, "root", "admin");
+    }
+
+    public function query($query)  {
+
+        $statement = $this->connection->prepare($query);
+        $statement->execute(); 
+
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+}
+
+$db = new Database();
+
+$posts = $db->query("select * from posts");
 ```
