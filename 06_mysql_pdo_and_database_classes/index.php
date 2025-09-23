@@ -25,7 +25,10 @@ class Database {
 
 $db = new Database();
 
-$posts = $db->query("select * from posts");
+$posts = $db->query("select * from posts where id > 1");
+
+//connect to our mysql database
+
 
 
 foreach ($posts as $post) {
@@ -33,3 +36,4 @@ foreach ($posts as $post) {
     echo $post['title'];
     echo "</li>";
 }
+
