@@ -7,11 +7,15 @@ $config = require("config.php");
 
 $db = new Database($config['database']);
 
-$posts = $db->query("select * from posts");
+$id = $_GET['id'];
+dd($id);
+$query = "select * from posts where id = :id";
+$posts = $db->query($query, [':id' => $id]) -> fetch();
 
+echo "<li>{$posts['title']}</li>";
 
-foreach ($posts as $post) {
-    echo "<li>";
-    echo $post['title'];
-    echo "</li>";
-}
+// foreach ($posts as $post) {
+//     echo "<li>";
+//     echo $post['title'];
+//     echo "</li>";
+// }
